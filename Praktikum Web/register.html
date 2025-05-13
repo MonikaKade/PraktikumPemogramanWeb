@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="register.css">
+
 </head>
 <body>
     <form>
@@ -21,17 +23,18 @@
         <label for="uploadfotoprofile">Upload Foto Profile</label><br>
         <input type="file" name="uploadfotoprofile">
         <p>Jenis Kelamin</p>
-        <input type="radio" name="jeniskelamin">
-        <label for="jeniskelamin">Laki-laki</label><br>
-        <input type="radio" name="jeniskelamin">
-        <label for="jeniskelamin">Perempuan</label><br>
+            <div class="radio-group">
+                <label><input type="radio" name="jeniskelamin" value="Laki-laki">Laki-laki</label>
+                <label><input type="radio" name="jeniskelamin" value="Perempuan">Perempuan</label>
+            </div>
+
         <p>Hobi</p>
-        <input type="checkbox" name="hobi" value="1">
-        <label for="hobi">Membaca</label><br>
-        <input type="checkbox" name="hobi" value="1">
-        <label for="hobi">Travelling</label><br>
-        <input type="checkbox" name="hobi" value="1">
-        <label for="hobi">Olahraga</label><br>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="hobi" value="Membaca">Membaca</label>
+                <label><input type="checkbox" name="hobi" value="Travelling">Travelling</label>
+                <label><input type="checkbox" name="hobi" value="Olahraga">Olahraga</label>
+            </div>
+
         <label>Negara:</label><br>
         <select id="negara" name="negara">
         <option value="Jepang">Jepang</option>
