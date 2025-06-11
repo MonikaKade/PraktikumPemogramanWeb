@@ -1,0 +1,80 @@
+/* Background Umum */
+body {
+    background-color: #DAF1DE;
+    font-family: Arial, sans-serif;
+    color: #163832;
+    margin: 0;
+    padding: 40px;
+}
+
+/* Judul Login */
+h1 {
+    text-align: center;
+    color: #235347;
+    text-shadow: 1px 1px 2px #999;
+}
+
+/* Form Login */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #8EB69B;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(22, 56, 50, 0.2);
+}
+
+/* Label dan Input */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #235347;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Tombol Submit */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #235347;
+    color: #DAF1DE;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0B2B26;
+}
+
+/* Link Register */
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #163832;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #0B2B26;
+    text-decoration: underline;
+}
