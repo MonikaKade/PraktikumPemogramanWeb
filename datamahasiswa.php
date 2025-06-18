@@ -13,6 +13,9 @@
 </head>
 <body>
     <h1>datamahasiswa</h1>
+    
+    <a href ="tambahdata.php"><button style="margin-bottom:15px; background-color:lightgreen;">Tambah Data</button></a>
+
 <table border="1" cellpading="10" cellspacing="0">
     <tr>
         <th>NO</th>
@@ -21,6 +24,7 @@
         <th>NIM</th>
         <th>Jurusan</th>
         <th>NoHp</th>
+        <th>Aksi</th>
     </tr>
     <?php 
     $i = 1;
@@ -34,6 +38,7 @@
             <td> <?= $mhs["nim"] ?> </td>
             <td> <?= $mhs["jurusan"] ?></td>
             <td> <?= $mhs["nohp"] ?></td>
+            <td> <a href ="hapusdata.php/?id=<?= $mhs["id"]?>"><button style="margin-bottom:12px; background-color:lightred;">Hapus Data</button></a> </td>
         </tr>
     <?php $i++; } ?>
 </body>
