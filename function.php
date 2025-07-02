@@ -31,7 +31,7 @@ function tambahmahasiswa($data) {
 
     // ===== Upload Gambar =====
     $namaFile = $_FILES['img']['name'];
-    $tmpName = $_FILES['img']['tmp_name'];
+    $tmpName = $_FILES['img']['tmp_name']; //fungsnya untuk menyimpan sementara
 
     // Cek ekstensi file (opsional keamanan)
     $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
@@ -71,4 +71,54 @@ function hapusdata($id) {
 
     return mysqli_affected_rows($koneksi);
 }
+
+function ubahdata($data) {
+    global $koneksi;
+
+    // Ambil data dari form
+    $id = $data["id"]; // HARUS ditambahkan
+    $nama = htmlspecialchars($data["nama"]); 
+    $nim = htmlspecialchars($data["nim"]); 
+    $jurusan = htmlspecialchars($data["jurusan"]); 
+    $nohp = htmlspecialchars($data["nohp"]);
+    $gambarLama = $data["gambarLama"]; // dari input hidden form
+
+    // ===== Upload Gambar =====
+    if ($_FILES['img']['error'] === 4) {
+        // Jika tidak upload gambar baru
+        $namaFileBaru = $gambarLama;
+    } else {
+        $namaFile = $_FILES['img']['name'];
+        $tmpName = $_FILES['img']['tmp_name'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensi = strtolower(pathinfo($namaFile, PATHINFO_EXTENSION));
+
+        if (!in_array($ekstensi, $ekstensiGambarValid)) {
+            echo "<script>alert('Yang diupload bukan gambar!');</script>";
+            return 0;
+        }
+
+        $namaFileBaru = uniqid() . '.' . $ekstensi;
+        move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+        // (Opsional) Hapus gambar lama jika ada:
+        if (file_exists('img/' . $gambarLama)) {
+            unlink('img/' . $gambarLama);
+        }
+    }
+
+    // Query update
+    $query = "UPDATE mahasiswa SET
+                nama = '$nama',
+                nim = '$nim',
+                jurusan = '$jurusan',
+                nohp = '$nohp',
+                img = '$namaFileBaru'
+              WHERE id = $id";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
 ?>

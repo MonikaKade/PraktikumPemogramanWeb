@@ -98,10 +98,15 @@
                     <td><?= $mhs["jurusan"] ?></td>
                     <td><?= $mhs["nohp"] ?></td>
                     <td>
-                        <a href="hapusdata.php/?id=<?= $mhs['id'] ?>">
+                        <a href="hapusdata.php?id=<?= $mhs['id'] ?>" onclick="return confirm('Yakin ingin dihapus?');">
                             <button class="btn-hapus">Hapus</button>
                         </a>
+                        |
+                        <a href="ubahdata.php?id=<?= $mhs['id'] ?>">
+                            <button style="margin-bottom: 12px; background-color: blue; color: white;">Edit</button>
+                        </a>
                     </td>
+
                 </tr>
             <?php $i++; } ?>
         </table>
