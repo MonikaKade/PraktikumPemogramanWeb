@@ -1,54 +1,70 @@
+<?php
+
+require 'function.php';
+
+if (isset($_POST["username"])) {
+    $message = register($_POST); //
+
+    if ($message === "Register Berhasil") {
+        echo "
+            <script>
+                alert ('" . addslashes($message) . "');
+                document.location.href ='login.php'; 
+            </script>
+            ";
+    } else {
+        echo "
+            <script>
+                alert ('" . addslashes($message) . "');
+            </script>
+            ";
+    }
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="register.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-Xbg45MqvDIk1e563NLpGEulpX6AvL404DP+/iCgW9eFa2BqztiwTexswJo2jLMue" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 </head>
-<body>
-    <form>
-        <h2  align= "center">Formulir Pendaftaran</h2>
-        <label for="nama lengkap">Nama Lengkap:</label><br>
-        <input type="text" name="nama lengkap"><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="femail" name="email"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" name="password"> <br>
-        <label for="Umur">Umur:</label><br>
-        <input type="number" name="Umur"><br>
-        <label for="tanggallahir">Tanggal Lahir:</label><br>
-        <input type="date" name="tanggallahir"><br><br>
-        <label for="uploadfotoprofile">Upload Foto Profile</label><br>
-        <input type="file" name="uploadfotoprofile">
-        <p>Jenis Kelamin</p>
-            <div class="radio-group">
-                <label><input type="radio" name="jeniskelamin" value="Laki-laki">Laki-laki</label>
-                <label><input type="radio" name="jeniskelamin" value="Perempuan">Perempuan</label>
-            </div>
 
-        <p>Hobi</p>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="hobi" value="Membaca">Membaca</label>
-                <label><input type="checkbox" name="hobi" value="Travelling">Travelling</label>
-                <label><input type="checkbox" name="hobi" value="Olahraga">Olahraga</label>
-            </div>
+<body style="padding: 0 400px;">
+    <h2 align="center">Formulir Pendaftaran</h2>
 
-        <label>Negara:</label><br>
-        <select id="negara" name="negara">
-        <option value="Jepang">Jepang</option>
-        <option value="Australia">Australia</option>
-        <option value="Indonesia">Indonesia</option>
-        </select><br><br>
-        <label for="bio">Biografi Singkat:</label><br>
-        <textarea id="bio" name="bio" rows="4" cols="50"></textarea><br><br>
-  
-      <input type="submit" value="Daftar">
-    
+    <div class="card" style="background-color: darkmagenta; color: whitesmoke">
+        <div class="card-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Password1" name="password1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Konfirmasi Password</label>
+                    <input type="password" class="form-control" id="Password2" name="password2">
+                </div>
+                <button type="submit" name="register" class="btn btn-primary">Submit</button>
+            </form>
 
-        
+        </div>
+    </div>
 
-    </form>
 </body>
+
 </html>

@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require 'function.php'; // koneksi dan fungsi tambahmahasiswa()
 
 if(isset($_POST["submit"])){

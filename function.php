@@ -121,4 +121,47 @@ function ubahdata($data) {
     return mysqli_affected_rows($koneksi);
 }
 
+
+function register($data)
+{
+   global $koneksi;
+
+   //ambil data register.php
+   $username = stripslashes($data["username"]);
+   $password1 = $data["password1"];
+   $password2 = $data["password2"];
+
+   $query = "SELECT * FROM user WHERE username = '$username'";
+
+   $username_check = mysqli_query($koneksi, $query);
+//untuk mengecek agr username tdk lebih dari satu
+   if(mysqli_num_rows($username_check) > 0)
+   {
+    return "Username Sudah Terdaftar";
+   }
+
+//aturan untuk membuat usrname
+   if(!preg_match('/^[a-zA-Z0-9.-_]+$/', $username))
+   {
+    return  "Username tidak Valid!";
+   }
+
+//untuk pengecekan pass
+   if($password1 !== $password2)
+   {
+    return "Konfirmasi Password Salah!";
+   }
+
+   $encrypt_pass = password_hash($password1, PASSWORD_DEFAULT);
+
+   $query_insert = "INSERT INTO user (username, password) VALUE ('$username', '$encrypt_pass')";
+
+   if(mysqli_query($koneksi, $query_insert))
+   {
+    return "Registrasi Berhasil!";
+   }
+   else {
+    return "Gagal" . mysqli_error($koneksi);
+   }
+}
 ?>

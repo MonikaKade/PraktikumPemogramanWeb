@@ -1,15 +1,24 @@
 <?php
-    require 'function.php';
-    $query = "SELECT * FROM mahasiswa";
-    $rows = query($query);
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+
+require 'function.php';
+$query = "SELECT * FROM mahasiswa";
+$rows = query($query);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title><style>
+    <title>Data Mahasiswa</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7f8;
@@ -25,10 +34,11 @@
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             border: 1px solid #ddd;
             text-align: center;
@@ -70,10 +80,11 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Data Mahasiswa</h1>
-        
+
         <a href="tambahdata.php"><button class="btn-tambah">+ Tambah Data</button></a>
 
         <table>
@@ -87,9 +98,9 @@
                 <th>Aksi</th>
             </tr>
 
-            <?php 
+            <?php
             $i = 1;
-            foreach ($rows as $mhs) { ?> 
+            foreach ($rows as $mhs) { ?>
                 <tr>
                     <td><?= $i ?></td>
                     <td><img src="img/<?= $mhs['img'] ?>" alt="Foto Mahasiswa" width="80"></td>
@@ -108,7 +119,8 @@
                     </td>
 
                 </tr>
-            <?php $i++; } ?>
+                <?php $i++;
+            } ?>
         </table>
     </div>
 </body>
